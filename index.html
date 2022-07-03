@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tags</title>
+    <style>
+      html, body {
+        width: 100%; height: 100%;
+        margin: 0;
+        font-family: 'Microsoft JhengHei';
+      }
+    </style>
+  </head>
+  <body>
+    <tags-default-style
+      title="Mengru"
+      scale="1"
+      width="100%"
+      height="100%"
+    >
+      <my-tags>
+        <div style="display: none" slot="text"></div>
+      </my-tags>
+    </tags-default-style>
+
+    <script type="module" src="/src/main.ts"></script>
+    <script>
+      fetch('https://mengru.space/plugins/tags/data.txt')
+        .then(res => res.text())
+    .then(text => {
+      document.querySelector('[slot=text]').textContent = text
+      document.querySelector('my-tags').rerender = Math.random()
+      document.querySelector('tags-default-style').rerender = Math.random()
+    })
+    </script>
+  </body>
+</html>
