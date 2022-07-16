@@ -18,10 +18,11 @@
   export let scale: string
   export let width: string
   export let height: string
+  export let icon: string = "➜"
+  export let inorder: boolean = false
 
   import { Colorscheme, Size } from './constant'
   import Utils from '../../utils'
-import { afterUpdate } from 'svelte';
 
   type RGBColor = string
 
@@ -91,7 +92,7 @@ import { afterUpdate } from 'svelte';
     ${genCSS()}
 
     mark {
-      position: absolute;
+      position: ${inorder ? "unset" : "absolute"};
       padding: .2em .3em;
       display: inline-block;
       border-radius: .3em;
@@ -99,8 +100,8 @@ import { afterUpdate } from 'svelte';
       opacity: .8;
       transition: opacity .2s;
     }
-    mark a::after { content: "➜"; }
-    mark a:hover::after { animation: move .3s linear infinite; position: relative; }
+    mark a::after { content: "${icon}"; }
+    mark a:hover::after { animation: move .5s linear infinite; position: relative; }
     @keyframes move {
       0% { left: 0px }
       50% { left: 1% }
